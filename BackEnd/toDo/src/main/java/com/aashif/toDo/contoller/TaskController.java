@@ -1,16 +1,21 @@
 package com.aashif.toDo.contoller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.aashif.toDo.model.Task;
+import com.aashif.toDo.repository.TaskRepo;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-
+@CrossOrigin
 public class TaskController
 {
+    private TaskRepo taskRepo;
+
+    TaskController(TaskRepo taskRepo){
+        this.taskRepo = taskRepo;
+    }
 
     @GetMapping("/hello-world")
     public String helloWorld()
@@ -19,11 +24,9 @@ public class TaskController
     }
 
     @PostMapping("/api/tasks")
-    public List<String> createTask()
+    public String createTask(@RequestBody Task task)
     {
-        List<String>users = new ArrayList<>();
-        users.add("John");
-        users.add("Jane");
-        return users;
+        taskRepo.save(task);
+        return task.toString();
     }
 }
