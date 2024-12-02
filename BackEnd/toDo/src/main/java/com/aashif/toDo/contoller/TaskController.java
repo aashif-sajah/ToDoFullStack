@@ -25,14 +25,26 @@ public class TaskController
     }
 
     @PostMapping
-    public String createTask(@RequestBody Task task)
+    public Task createTask(@RequestBody Task task)
     {
         taskRepo.save(task);
-        return task.toString();
+        return task;
     }
 
     @GetMapping
     public List<Task> getAllTasks(){
         return taskRepo.findAll();
+    }
+
+    @PutMapping("/{id}")
+    public Task updateTask(@PathVariable long id,@RequestBody Task task){
+        task.setId(id);
+        return taskRepo.save(task);
+
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteTask(@PathVariable int id) {
+        taskRepo.deleteById(id);
     }
 }
