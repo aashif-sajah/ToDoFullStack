@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
+@RequestMapping("/api/tasks")
 public class TaskController
 {
     private TaskRepo taskRepo;
@@ -23,10 +24,15 @@ public class TaskController
         return "Hello World";
     }
 
-    @PostMapping("/api/tasks")
+    @PostMapping
     public String createTask(@RequestBody Task task)
     {
         taskRepo.save(task);
         return task.toString();
+    }
+
+    @GetMapping
+    public List<Task> getAllTasks(){
+        return taskRepo.findAll();
     }
 }
