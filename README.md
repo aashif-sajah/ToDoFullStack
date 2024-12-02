@@ -94,7 +94,7 @@ This project is licensed under the **MIT License**. See the `LICENSE` file for d
 
 ## 📸 Screenshot  
 
-![Screenshot](toDo-frontEnd/screenshots/sample.png)  
+![Screenshot](FrontEnd/toDo-frontEnd/screenshots/sample.png)  
 
 
 
